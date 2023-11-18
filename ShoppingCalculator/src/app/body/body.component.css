@@ -1,0 +1,49 @@
+button {
+  width: 20vw;
+  height: 20vw;
+  margin: 3vw;
+  font-size: 12vw;
+  border-radius: 20vw;
+}
+
+.content {
+  margin-top: 6vh;
+}
+.buttons {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  width: 78vw;
+  margin: auto;
+}
+.value {
+  font-size: 9vw;
+  
+  text-align: center
+}
+.box {
+  border: 1px solid;
+  width: 10vw;
+  height: 10vw;
+  display: inline-flex;
+  margin: 1vh 1vw;
+  flex-direction: row;
+}
+.list {
+  border: 1px solid;
+  height: 100px;
+  display: block;
+  overflow-y: scroll;
+}
+.amount:nth-child(odd) {
+  background: #0094ff;
+}
+.amount:nth-child(even) {
+  background: #fff;
+}
+
+.amount {
+  display: block;
+  padding: 1vw;
+}
+
