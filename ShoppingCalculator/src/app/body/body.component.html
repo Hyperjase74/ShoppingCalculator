@@ -1,34 +1,42 @@
 <div class="content">
-  Sum Total: {{ sumTotal | currency :'GBP':'symbol':'1.2-2' }}
+  <div class="total">
+    Sum Total: {{ sumTotal | currency :'GBP':'symbol':'1.2-2' }}
+  </div>
+  <div class="budget" *ngIf="displayBudget" [ngStyle]="{'color': (budget < 0) ? '#ff0000' : '#000'}">
+    Budget: {{ budget | currency :'GBP':'symbol':'1.2-2' }}
+  </div>
   <div class="list">
     <span class="amount" *ngFor="let values of listOfValues">
       {{ values.amount | currency :'GBP':'symbol':'1.2-2' }} | <i class="bi bi-trash float-right" (click)="remove(values)"></i>
     </span>
   </div>
   <div class="value">
+    <div class="symbol">&pound;</div>
     <div class="box">{{ digit5 }}</div>
     <div class="box">{{ digit4 }}</div>
     <div class="box">{{ digit3 }}</div>
-    .
+    <i class="bi bi-dot"></i>
     <div class="box">{{ digit2 }}</div>
     <div class="box">{{ digit1 }}</div>
   </div>
   <div class="buttons">
-    <button (click)="add('7')">7</button>
-    <button (click)="add('8')">8</button>
-    <button (click)="add('9')">9</button>
+    <button class="number" (click)="add('7')">7</button>
+    <button class="number"(click)="add('8')">8</button>
+    <button class="number"(click)="add('9')">9</button>
     <!-- Break -->
-    <button (click)="add('4')">4</button>
-    <button (click)="add('5')">5</button>
-    <button (click)="add('6')">6</button>
+    <button class="number"(click)="add('4')">4</button>
+    <button class="number"(click)="add('5')">5</button>
+    <button class="number"(click)="add('6')">6</button>
     <!-- Break -->
-    <button (click)="add('1')">1</button>
-    <button (click)="add('2')">2</button>
-    <button (click)="add('3')">3</button>
+    <button class="number"(click)="add('1')">1</button>
+    <button class="number"(click)="add('2')">2</button>
+    <button class="number"(click)="add('3')">3</button>
     <!-- Break -->
-    <button><i class="bi bi-backspace"></i></button>
-    <button (click)="add('0')">0</button>
-    <button (click)="addAmount()"><i class="bi bi-plus-lg"></i></button>
+    <button class="number" disabled><i class="bi bi-backspace"></i></button>
+    <button class="number" (click)="add('0')">0</button>
+    <button class="number" (click)="addAmount()"><i class="bi bi-plus-lg"></i></button>
     <!-- Break -->
+    <button class="btn" (click)="clearAll()">Clear all</button>
+    <button class="btn" (click)="addBudget()">Add Budget</button>
   </div>
 </div>

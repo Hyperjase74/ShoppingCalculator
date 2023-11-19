@@ -17,6 +17,8 @@ export class BodyComponent {
   total = '';
   totalAmount = 0.00;
   sumTotal = 0.00;
+  budget = 0.00;
+  displayBudget = false;
 
   ngOnInit() {
     var retrievedObject = localStorage.getItem('values');
@@ -28,6 +30,7 @@ export class BodyComponent {
         this.sumTotal += eachObj[i].amount;
       }       
     }
+    this.calcBudget();
   }
 
   add(number: string) {    
@@ -74,7 +77,7 @@ export class BodyComponent {
       this.listOfValues.push({ index: this.listOfValues.length, amount: this.totalAmount });
       localStorage.setItem('values', JSON.stringify(this.listOfValues));
       this.sumTotal += this.totalAmount;
-      this.resetDigits();
+      this.resetDigits();      
       let msgbox = document.querySelector('.list');
       if (msgbox) {
         console.log(msgbox.scrollTop, msgbox.scrollHeight);
@@ -90,11 +93,55 @@ export class BodyComponent {
     this.digit1 = '';
     this.totalAmount = 0.00;
     this.total = '';
+    this.calcBudget();
   }
+
+  clearAll(): void {
+    if (this.listOfValues.length > 0) {
+      if (confirm('Are you sure?')) {
+        localStorage.removeItem('values');
+        this.listOfValues = [];
+        this.resetDigits();
+        this.sumTotal = 0.00;
+        this.calcBudget();
+      }
+    }
+  }
+
+  calcBudget(): void {
+    let budget = localStorage.getItem('budget');
+    if (budget != null) {
+      this.budget = parseFloat(budget) - this.sumTotal;
+      this.displayBudget = true;
+    }
+  }
+
+  addBudget(): void {
+    let budget = prompt('Please enter your budget');
+    if (budget?.length != null) {
+      if (parseFloat(budget) > 0.00) {
+        localStorage.setItem('budget', budget);
+        this.displayBudget = true;
+        this.calcBudget();
+      } else {
+        this.displayBudget = false;
+        localStorage.removeItem('budget');
+      }
+    }
+  }
+
   remove(item: TotalAmounts) {
-    this.listOfValues = this.listOfValues.filter(x => x.index != item.index);
-    this.sumTotal -= item.amount;
-    localStorage.setItem('values', JSON.stringify(this.listOfValues));
+    if (confirm('Are you sure?')) {
+      this.listOfValues = this.listOfValues.filter(x => x.index != item.index);
+      this.sumTotal -= item.amount;
+      let newArray: TotalAmounts[] = [];
+      for (var i = 0; i < this.listOfValues.length; i++) {
+        newArray.push({ index: i, amount: this.listOfValues[i].amount });
+      }
+      this.listOfValues = newArray;
+      localStorage.setItem('values', JSON.stringify(this.listOfValues));
+      this.calcBudget();
+    }
   }
 }
 interface TotalAmounts {

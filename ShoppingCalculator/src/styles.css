@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html {
+  font-family: system-ui;
+  background-image: url('assets/images/bgimg.jpg');
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
+  height: 100%;
+}
