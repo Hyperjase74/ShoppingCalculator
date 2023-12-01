@@ -1,0 +1,12 @@
+footer {
+  width: 100%;
+  text-align: center;
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+.fixed-bottom {
+    position: absolute;
+    bottom: 0;
+}

@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ShoppingCalculator';
+  title = 'Shopping Calculator';
+
+  onNgInit() {
+    document.ondblclick = function (e) {
+      e.preventDefault();
+    }
+  }
 }

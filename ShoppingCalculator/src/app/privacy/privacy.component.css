@@ -1,0 +1,7 @@
+.container {
+  height: 96vh;
+  margin: 4vh 0.75vw 0 0.75vw;
+  overflow: auto;
+  padding: 0 1vw;
+  word-break: break-word;
+}

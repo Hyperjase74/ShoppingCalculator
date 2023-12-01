@@ -10,7 +10,5 @@
   color: white;
   font-weight: 600;
   text-align: center;
-}
-.spacer {
-  flex: 1;
+  padding: 1vh;
 }
