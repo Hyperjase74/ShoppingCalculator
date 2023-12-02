@@ -8,7 +8,7 @@
     </div>
     <div class="list">
       <div class="amount" *ngFor="let values of listOfValues">
-        <div class="values">
+        <div class="values" (click)="percCalc(values.index)">
           {{ values.amount | currency :'GBP':'symbol':'1.2-2' }}&nbsp;
         </div>
         <div class="values-descr" (click)="addDescr(values.index)">

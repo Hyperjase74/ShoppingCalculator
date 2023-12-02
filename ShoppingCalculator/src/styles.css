@@ -7,15 +7,16 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
 body {
   margin: 0;
   touch-action: manipulation;
+  height: calc(100% - 30px);
 }
 .content {
-  margin: 6vh 1vw 0 1vw;
-
+  margin-top: 30px;
+  height: calc(100% - 30px);
 }

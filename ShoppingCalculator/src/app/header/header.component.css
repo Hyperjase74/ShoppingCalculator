@@ -3,12 +3,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4vh;
+  height: 20px;
   display: flex;
   align-items: center;
   background-color: #1976d2;
   color: white;
   font-weight: 600;
   text-align: center;
-  padding: 1vh;
+  padding: 5px;
 }

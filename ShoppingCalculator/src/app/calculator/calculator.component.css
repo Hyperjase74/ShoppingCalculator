@@ -20,10 +20,11 @@
   background-color: #fff;
 }
 .list {
-  border: 1px solid;
-  display: block;
+  /*border: 1px solid;*/
+  display: inline-block;
   overflow: scroll;
   background-color: #fff;
+  box-shadow: inset 0 0 1px #000;
 }
 .amount:nth-child(odd) {
   background: #1976d2;
@@ -57,13 +58,16 @@
 }
 @media (orientation: landscape) {
   .block-1 {
+    height: 100%;
+    display: inline-block;
+    width: 50%;
     float: left;
-    width: 48vw;
   }
   .block-2 {
+    height: 100%;
+    display: inline-block;
+    width: 50%;
     float: right;
-    width: 48vw;
-    margin: 3vh 0;
   }
   .number {
     width: 7vw;
@@ -78,7 +82,7 @@
     flex-flow: row;
     flex-wrap: wrap;
     margin: auto;
-    width: 27vw;
+    width: 54%;
   }
   .total, .budget {
     font-size: 3vw;
@@ -97,11 +101,22 @@
     margin: 2vh 0;
   }
   .list {
-    height: 60vh;
+    height: 65%;
+    width: 100%;
   }
 }
 
 @media (orientation: portrait) {
+  .block-1 {
+    height: 30%;
+    display: inline-block;
+    width: 100%;
+  }
+  .block-2 {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+  }
   .number {
     width: 15vw;
     height: 15vw;
@@ -114,7 +129,7 @@
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    width: 54vw;
+    width: 54%;
     margin: auto;
   }
   .total, .budget {
@@ -131,12 +146,13 @@
   }
   .value {
     font-size: 7vw;
-    margin: 1vh 0;
+    margin: 5px 0;
   }
   .symbol {
     font-size: 7vw;
   }
   .list {
-    height: 100px;
+    height: 50%;
+    width: 100%;
   }
 }

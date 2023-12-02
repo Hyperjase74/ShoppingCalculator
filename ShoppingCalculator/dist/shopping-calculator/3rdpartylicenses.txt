@@ -60,6 +60,9 @@ MIT
 @angular/router
 MIT
 
+@angular/service-worker
+MIT
+
 bootstrap-icons
 MIT
 The MIT License (MIT)

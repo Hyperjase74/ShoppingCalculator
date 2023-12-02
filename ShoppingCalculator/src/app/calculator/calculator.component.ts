@@ -167,19 +167,39 @@ export class CalculatorComponent {
     }
   }
 
+  percCalc(index: number): void {
+    let perc = prompt("Please enter percentage (ie 30)");    
+    if (perc?.length != null) {
+      let value = this.listOfValues[index].amount;
+      this.sumTotal -= value;
+      let percentage = parseFloat(perc) / 100;
+      let calcValue = (percentage / 100) * value * 100;
+      let percValue = Math.floor(calcValue * 100) / 100;
+      let output = Math.floor((value - percValue) * 100) / 100;
+      alert(`Validation:\n${perc}% of £${value} = £${percValue}\nDiscounted price = £${output.toFixed(2)}\nImportant! Rounding may cause 1p +/- discrepancy`);
+      this.listOfValues[index].amount = output;
+      this.sumTotal += output;
+      this.buildList();
+    }    
+  }
+
+  buildList(): void {
+    let newArray: TotalAmounts[] = [];
+    for (var i = 0; i < this.listOfValues.length; i++) {
+      newArray.push({ index: i, amount: this.listOfValues[i].amount, descr: this.listOfValues[i].descr });
+    }
+    this.listOfValues = newArray;
+    localStorage.setItem('values', JSON.stringify(this.listOfValues));
+    this.calcBudget();
+  }
+
   remove(item: TotalAmounts) {
     let itemDescr = item.descr;
     let message = (itemDescr != '') ? `Do you want to remove ${itemDescr}?` : 'Do you want to remove this item?';
     if (confirm(message)) {
       this.listOfValues = this.listOfValues.filter(x => x.index != item.index);
       this.sumTotal -= item.amount;
-      let newArray: TotalAmounts[] = [];
-      for (var i = 0; i < this.listOfValues.length; i++) {
-        newArray.push({ index: i, amount: this.listOfValues[i].amount, descr: this.listOfValues[i].descr });
-      }
-      this.listOfValues = newArray;
-      localStorage.setItem('values', JSON.stringify(this.listOfValues));
-      this.calcBudget();
+      this.buildList();
     }
   }
 }
