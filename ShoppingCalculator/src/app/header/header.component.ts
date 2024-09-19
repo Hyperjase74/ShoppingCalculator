@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  isExpanded = false;
+export class HeaderComponent implements OnInit {
 
-  collapse() {
-    this.isExpanded = false;
-  }
+  @Output() public sidenavToggle = new EventEmitter();
+  constructor() { }
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
+  ngOnInit(): void { }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 }

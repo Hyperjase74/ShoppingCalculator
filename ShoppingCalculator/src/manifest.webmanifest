@@ -1,5 +1,5 @@
 {
-  "name": "ShoppingCalculator",
+  "name": "Shopping Calculator",
   "short_name": "ShoppingCalculator",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
@@ -55,5 +55,18 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
+  ],
+  "description": "Sick of losing track of how much you spend on shopping?  On a tight budget?  Shopping Calculator will help you keep track of your shopping budget",
+  "orientation": "any",
+  "lang": "en",
+  "dir": "auto",
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "id": "197912",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
   ]
 }

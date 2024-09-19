@@ -52,8 +52,8 @@
       <button class="number" (click)="add('0')">0</button>
       <button class="number" (click)="addAmount()" [disabled]="digit1 == ''"><i class="bi bi-plus-lg"></i></button>
       <!-- Break -->
-      <button class="btn" (click)="clearAll()">Clear all</button>
-      <button class="btn" (click)="addBudget()">Add Budget</button>
+      <button type="button" class="btn btn-primary" (click)="clearAll()" [disabled]="listOfValues.length === 0">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="addBudget()">Budget</button>
     </div>
   </div>
 </div>

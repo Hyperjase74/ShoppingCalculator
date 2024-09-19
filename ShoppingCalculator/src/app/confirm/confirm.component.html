@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Confirm</h2>
+<form [formGroup]="confirm">
+  <div mat-dialog-content>
+    <h3>{{ confirmData.message }}</h3>
+  </div>
+
+  <div mat-dialog-actions>
+    <button type="button" (click)="yes()" class="btn btn-primary m-2">Yes</button>
+    <button type="button" (click)="no()" class="btn btn-danger m-2">No</button>
+  </div>
+</form>

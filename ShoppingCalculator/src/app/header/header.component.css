@@ -2,8 +2,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 20px;
+  width: 100%;
+  height: calc(20px + env(safe-area-inset-top));
   display: flex;
   align-items: center;
   background-color: #1976d2;

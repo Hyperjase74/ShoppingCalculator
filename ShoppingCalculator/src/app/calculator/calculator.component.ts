@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DialogData } from '../models/dialogdata';
+import { ItemnameComponent } from '../itemname/itemname.component';
+import { ItemName } from '../models/itemname';
+import { ConfirmComponent } from '../confirm/confirm.component';
+import { ConfirmAction } from '../models/confirmdata';
 
 @Component({
   selector: 'app-calculator',
@@ -6,6 +13,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent {
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   listOfValues: TotalAmounts[] = [];
 
@@ -114,12 +124,22 @@ export class CalculatorComponent {
   }
   addDescr(item: number): void {
     console.log(item);
-    let descr = prompt('Please enter a description');
-    if (descr?.length != null) {
-      this.listOfValues[item].descr = descr;
-      localStorage.removeItem('values');
-      localStorage.setItem('values', JSON.stringify(this.listOfValues));
-    }
+    const dialogRef = this.dialog.open(ItemnameComponent, {
+      data: {
+        name: this.listOfValues[item].descr
+      }
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (itemName: ItemName) => {
+        console.log(itemName)
+        var descr = itemName.name;
+        if (descr?.length != null) {
+          this.listOfValues[item].descr = descr;
+          localStorage.removeItem('values');
+          localStorage.setItem('values', JSON.stringify(this.listOfValues));
+        }
+      }
+    });    
   }
 
   resetDigits(): void {
@@ -135,13 +155,22 @@ export class CalculatorComponent {
 
   clearAll(): void {
     if (this.listOfValues.length > 0) {
-      if (confirm('Are you sure?')) {
-        localStorage.removeItem('values');
-        this.listOfValues = [];
-        this.resetDigits();
-        this.sumTotal = 0.00;
-        this.calcBudget();
-      }
+      const dialogRef = this.dialog.open(ConfirmComponent, {
+        data: {
+          message: 'Are you sure you want to clear all values?'
+        }
+      })
+      dialogRef.afterClosed().subscribe({
+        next: (confirmAction: ConfirmAction) => {
+          if (confirmAction.action) {
+            localStorage.removeItem('values');
+            this.listOfValues = [];
+            this.resetDigits();
+            this.sumTotal = 0.00;
+            this.calcBudget();
+          }
+        }
+      })
     }
   }
 
@@ -154,17 +183,21 @@ export class CalculatorComponent {
   }
 
   addBudget(): void {
-    let budget = prompt('Please enter your budget');
-    if (budget?.length != null) {
-      if (parseFloat(budget) > 0.00) {
-        localStorage.setItem('budget', budget);
-        this.displayBudget = true;
-        this.calcBudget();
-      } else {
-        this.displayBudget = false;
-        localStorage.removeItem('budget');
+    const dialogRef = this.dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (dialogData: DialogData) => {
+        console.log(dialogData);
+        var budget = dialogData.budget;
+        if (budget > 0) {
+          localStorage.setItem('budget', budget.toString());
+          this.displayBudget = true;
+          this.calcBudget();
+        } else {
+          this.displayBudget = false;
+          localStorage.removeItem('budget');
+        }
       }
-    }
+    });    
   }
 
   percCalc(index: number): void {
@@ -196,11 +229,20 @@ export class CalculatorComponent {
   remove(item: TotalAmounts) {
     let itemDescr = item.descr;
     let message = (itemDescr != '') ? `Do you want to remove ${itemDescr}?` : 'Do you want to remove this item?';
-    if (confirm(message)) {
-      this.listOfValues = this.listOfValues.filter(x => x.index != item.index);
-      this.sumTotal -= item.amount;
-      this.buildList();
-    }
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      data: {
+        message: message
+      }
+    })
+    dialogRef.afterClosed().subscribe({
+      next: (confirmAction: ConfirmAction) => {
+        if (confirmAction.action) {
+          this.listOfValues = this.listOfValues.filter(x => x.index != item.index);
+          this.sumTotal -= item.amount;
+          this.buildList();
+        }
+      }
+    });
   }
 }
 interface TotalAmounts {

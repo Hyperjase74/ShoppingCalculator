@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Add Budget</h2>
+<form [formGroup]="budgetForm">
+  <mat-form-field>
+    <mat-label>Please enter your budget</mat-label>
+    <input matInput [currencyMask]="{ prefix: '£', thousands: ',', decimal: '.', allowNegative: false, precision: 2, align: 'left' }" type="tel" formControlName="value" autocomplete="off" />
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button type="button" (click)="ok()" class="btn btn-primary m-2">OK</button>
+    <button type="button" (click)="remove()" *ngIf="budget > 0" class="btn btn-primary m-2">Remove Budget</button>
+    <button type="button" (click)="cancel()" class="btn btn-danger m-2">Cancel</button>
+  </div>
+</form>

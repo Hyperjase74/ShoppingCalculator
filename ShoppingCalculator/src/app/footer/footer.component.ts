@@ -7,5 +7,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  year!: string;
 
+  ngOnInit(): void {
+    this.year = new Date().getFullYear().toString();
+  }
 }

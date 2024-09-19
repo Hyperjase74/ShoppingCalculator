@@ -1,6 +1,5 @@
 footer {
   width: 100%;
-  text-align: center;
   background: #1976d2;
   color: #fff;
   font-weight: 600;
@@ -9,4 +8,16 @@ footer {
 .fixed-bottom {
     position: absolute;
     bottom: 0;
+}
+.left {
+  float: left;
+  text-align: left;
+  width: 60%;
+  padding: 2px;
+}
+.right {
+  float: right;
+  text-align: right;
+  width: 35%;
+  padding: 2px;
 }

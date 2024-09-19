@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 html {
   font-family: system-ui;
@@ -8,15 +9,21 @@ html {
   background-position: center;
   background-size: cover;
   height: 100%;
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  min-height: calc(100% + env(safe-area-inset-top) - 30px);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 body {
   margin: 0;
   touch-action: manipulation;
-  height: calc(100% - 30px);
+  height: calc(100% + env(safe-area-inset-top) - 30px);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: transparent;
 }
 .content {
   margin-top: 30px;
-  height: calc(100% - 30px);
+  height: calc(100% + env(safe-area-inset-top) - 30px)
+}
+a {
+  text-decoration: none;
+  color: #fff;
 }
