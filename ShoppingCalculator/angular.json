@@ -5,9 +5,8 @@
   "projects": {
     "ShoppingCalculator": {
       "projectType": "application",
-      "schematics": {},
-      "root": "ShoppingCalculator",
-      "sourceRoot": "ShoppingCalculator/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
