@@ -1,31 +1,41 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "newProjectRoot": "projects",
   "projects": {
     "ShoppingCalculator": {
       "projectType": "application",
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/shopping-calculator",
-            "index": "index.html",
-            "main": "main.ts",
-            "polyfills": ["zone.js"],
+            "outputPath": {
+              "base": "dist/shopping-calculator"
+            },
+            "index": "src/index.html",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["favicon.ico", "assets", "manifest.webmanifest"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "styles.css",
+              "src/styles.css",
               "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": [
               "node_modules/cookieconsent/build/cookieconsent.min.js"
             ],
-            "serviceWorker": true
+            "serviceWorker": "ngsw-config.json",
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -41,9 +51,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all",
-              "optimization": true,
-              "sourceMap": false
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
@@ -75,12 +83,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["favicon.ico", "assets", "manifest.webmanifest"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "styles.css"
+              "src/styles.css"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"
@@ -89,5 +104,7 @@
       }
     }
   },
-  "cli": { "analytics": false }
+  "cli": {
+    "analytics": false
+  }
 }
