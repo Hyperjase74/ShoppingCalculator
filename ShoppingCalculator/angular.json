@@ -31,7 +31,7 @@
             "scripts": [
               "node_modules/cookieconsent/build/cookieconsent.min.js"
             ],
-            "serviceWorker": "ngsw-config.json"
+            "serviceWorker": true
           },
           "configurations": {
             "production": {
