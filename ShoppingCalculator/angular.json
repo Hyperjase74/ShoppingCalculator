@@ -16,7 +16,7 @@
             "outputPath": {
               "base": "dist/shopping-calculator"
             },
-            "index": "ShoppingCalculator/src/index.html",
+            "index": "index.html",
             "polyfills": [
               "zone.js"
             ],
